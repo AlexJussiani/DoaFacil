@@ -79,7 +79,7 @@ namespace DoaFacil.Pedidos.Application.Commands.Pedidos
                 return ValidationResult;
             }
 
-            var item = new ItemsPedido(message.IdProduto, message.IdPedido, "", message.Quantidade);
+            var item = new ItemsPedido(message.IdProduto, message.IdPedido, message.ProdutoNome, message.Quantidade);
 
             var itemExistente = pedido.PedidoItemExistente(item);
             pedido.AdicionarItemPedido(item);

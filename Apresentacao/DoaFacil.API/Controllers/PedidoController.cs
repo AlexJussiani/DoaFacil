@@ -11,7 +11,7 @@ namespace DoaFacil.API.Controllers
     public class PedidoController : MainController
     {
         private readonly IMediator _mediatorHandler;
-        private readonly IProdutoQueries _produtoQuere;
+        private readonly IProdutoQueries _produtoQuere;        
         public PedidoController(IMediator mediatorHandler, IProdutoQueries pedidoQuere)
         {
             _mediatorHandler = mediatorHandler;
@@ -37,11 +37,13 @@ namespace DoaFacil.API.Controllers
         {
             try
             {
-                if(await ExisteProduto(itemPedido.IdProduto)){
-                    var pedido = new AdicionarItemPedidoCommand(itemPedido.IdPedido, itemPedido.IdProduto, itemPedido.Quantidade);
-                    return CustomResponse(await _mediatorHandler.Send(pedido));
+                var produto = await _produtoQuere.ObterProdutosPorId(itemPedido.IdProduto);
+                if (produto == null){
+                    AdicionarErroProcessamento("Produto não localizado");
+                    return CustomResponse();
                 }
-                return CustomResponse();
+                var pedido = new AdicionarItemPedidoCommand(itemPedido.IdPedido, itemPedido.IdProduto, itemPedido.Quantidade, produto.Nome);
+                return CustomResponse(await _mediatorHandler.Send(pedido));
             }
             catch (Exception ex)
             {
@@ -75,17 +77,6 @@ namespace DoaFacil.API.Controllers
             {
                 return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
             }
-        }
-
-        private async Task<bool> ExisteProduto(Guid id)
-        {
-            var produto = await _produtoQuere.ObterProdutosPorId(id);
-            if (produto == null)
-            {
-                AdicionarErroProcessamento("Produto não localizado");
-                return false;
-            }
-            return true;
-        }
+        }        
     }
 }
