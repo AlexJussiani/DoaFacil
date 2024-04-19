@@ -55,15 +55,7 @@ namespace DoaFacil.Pedidos.Application.Commands.Pedidos
         public async Task<ValidationResult> Handle(AdicionarItemPedidoCommand message, CancellationToken cancellationToken)
         {
             // Validação do comando
-            if (!message.EhValido()) return message.ValidationResult;
-
-          //  var produto = await _produtoRepository.ObterPorId(message.IdProduto);
-
-          /*  if (produto == null)
-            {
-                AdicionarErro("Produto não localizado!");
-                return ValidationResult;
-            }*/
+            if (!message.EhValido()) return message.ValidationResult;         
 
             var pedido = await _pedidoDoacaoRepository.ObterPedidoPorId(message.IdPedido);
 

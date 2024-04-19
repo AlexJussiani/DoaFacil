@@ -38,6 +38,20 @@ namespace DoaFacil.Pedidos.Domain.Models
             CalcularQuantidadePedido();
         }
 
+        public void RemoverItemPedido(ItemsPedido item)
+        {
+            if (PedidoItemExistente(item))
+            {
+                _pedidoItems.Remove(item);
+                CalcularQuantidadePedido();
+            }
+            else
+            {
+                throw new DomainException("Item não localizado no pedido!");
+            }
+
+        }
+
         public bool PedidoItemExistente(ItemsPedido items)
         {
             return _pedidoItems.Any(i => i.IdProduto == items.IdProduto);
