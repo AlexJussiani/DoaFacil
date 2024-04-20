@@ -1,5 +1,4 @@
 ﻿using DoaFacil.Core.DomainObjects;
-using DoaFacil.Pedidos.Domain.Models;
 using DoaFacil.UnityTest._01_AutoMock;
 using Xunit;
 
