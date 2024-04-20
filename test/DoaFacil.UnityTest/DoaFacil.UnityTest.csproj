@@ -18,8 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Pedidos\DoaFacil.Pedidos.Application\DoaFacil.Pedidos.Application.csproj" />
-    <ProjectReference Include="..\Pedidos\DoaFacil.Pedidos.Domain\DoaFacil.Pedidos.Domain.csproj" />
+    <ProjectReference Include="..\..\Pedidos\DoaFacil.Pedidos.Application\DoaFacil.Pedidos.Application.csproj" />
+    <ProjectReference Include="..\..\Pedidos\DoaFacil.Pedidos.Domain\DoaFacil.Pedidos.Domain.csproj" />
   </ItemGroup>
-
 </Project>

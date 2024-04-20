@@ -1,10 +1,5 @@
 ﻿using DoaFacil.Core.DomainObjects;
 using DoaFacil.Pedidos.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace DoaFacil.UnityTest.Domain
